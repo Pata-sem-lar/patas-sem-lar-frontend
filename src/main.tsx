@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import "./index.css";
+
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
@@ -17,7 +19,17 @@ declare module "@tanstack/react-router" {
 }
 
 // Render the app
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      staleTime: 60_000, // 1 minuto
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});
 
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
