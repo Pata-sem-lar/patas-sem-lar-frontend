@@ -1,18 +1,13 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-
-interface User {
-  id: string;
-  nome: string;
-  email: string;
-  role: "cliente" | "profissional" | "admin_loja";
-}
+import { create } from "zustand"
+import { persist } from "zustand/middleware"
+import type { UsuarioDTO } from "@/types/api"
 
 interface AuthState {
-  accessToken: string | null;
-  user: User | null;
-  login: (token: string, user: User) => void;
-  logout: () => void;
+  accessToken: string | null
+  user: UsuarioDTO | null
+  login: (token: string, user: UsuarioDTO) => void
+  logout: () => void
+  setAccessToken: (token: string) => void
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -22,7 +17,12 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       login: (token, user) => set({ accessToken: token, user }),
       logout: () => set({ accessToken: null, user: null }),
+      setAccessToken: (token) => set({ accessToken: token }),
     }),
-    { name: "auth-storage" }
-  )
-);
+    {
+      name: "auth-storage",
+      // Persiste apenas o user — accessToken fica só em memória
+      partialize: (state) => ({ user: state.user }),
+    },
+  ),
+)
