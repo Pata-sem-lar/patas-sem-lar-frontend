@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:eslint": "eslint .",
+    "lint:prett:format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "lint:prett:format:check": "prettier --check \"src/**/*.{ts,tsx,css}\""
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.2.8",
