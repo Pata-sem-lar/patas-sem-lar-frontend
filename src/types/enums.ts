@@ -13,8 +13,7 @@ export const StatusAgendamento = {
   concluido: "concluido",
 } as const;
 
-export type StatusAgendamento =
-  (typeof StatusAgendamento)[keyof typeof StatusAgendamento];
+export type StatusAgendamento = (typeof StatusAgendamento)[keyof typeof StatusAgendamento];
 
 // Backend armazena como inteiro: 0 = segunda ... 6 = domingo
 export const DiaSemana = {
