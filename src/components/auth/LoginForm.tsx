@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Calendar, Mail, Lock, AlertTriangle } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, type LoginFormData } from "@/lib/validations/auth";
+import { useLogin } from "@/hooks/useAuth";
+import axios from "axios";
 
 export function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const [apiError, setApiError] = useState<string | null>(null); // Talvez esse estado saia mas por enquanto pode ficar assim
-
-  // Depois ainda vamos adicionar aqui a validação do formulário com zod e RHF, enviar os dados pro backend, esperar o resultado e então mostrar o resultado para o cliente
+  } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
+  const { mutate: loginMutate, isPending } = useLogin();
+  const [apiError, setApiError] = useState<string | null>(null);
 
   return (
     // Página — fundo vermelho visível em sm+, tela cheia em mobile
@@ -107,7 +110,18 @@ export function LoginForm() {
             className="space-y-4"
             onSubmit={handleSubmit((data) => {
               setApiError(null);
-              console.log(data);
+              loginMutate(data, {
+                onError: (error: unknown) => {
+                  if (axios.isAxiosError(error)) {
+                    const detail = error.response?.data?.detail;
+                    if (detail) {
+                      setApiError(detail);
+                      return;
+                    }
+                  }
+                  setApiError("Email ou senha incorretos. Tente novamente.");
+                },
+              });
             })}
           >
             {/* Campo de email */}
@@ -159,10 +173,11 @@ export function LoginForm() {
 
             {/* Botão de submit */}
             <button
-              className="w-full py-2.5 text-sm font-bold text-white rounded-lg cursor-pointer mt-2 btn-salmon"
+              disabled={isPending}
               type="submit"
+              className="w-full py-2.5 text-sm font-bold text-white rounded-lg cursor-pointer mt-2 btn-salmon"
             >
-              Entrar na conta
+              {isPending ? "Entrando..." : "Entrar na conta"}
             </button>
           </form>
 
