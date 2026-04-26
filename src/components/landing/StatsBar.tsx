@@ -1,0 +1,43 @@
+import { useEffect, useRef } from "react";
+
+const STATS = [
+  { value: "0", label: "Conflitos de horário" },
+  { value: "24/7", label: "Agendamentos sem você responder" },
+  { value: "-50%", label: "No-shows com lembretes automáticos" },
+  { value: "5 min", label: "Para configurar e começar" },
+];
+
+export function StatsBar() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.12 },
+    );
+    ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={ref} className="py-10 px-6 border-y border-border bg-background">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-center text-xs font-bold uppercase tracking-widest mb-8 text-label-muted">
+          O que muda quando você usa o Agendei
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {STATS.map(({ value, label }, i) => (
+            <div key={label} className={`reveal reveal-d${i + 1}`}>
+              <p className="text-4xl font-display font-black text-chart-3">{value}</p>
+              <p className="text-sm text-slate-500 mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
