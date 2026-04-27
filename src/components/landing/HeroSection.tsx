@@ -45,29 +45,18 @@ export function HeroSection() {
     <section className="hero-bg pt-32 pb-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <div className="section-badge" style={{ animation: "fadeUp .5s ease-out both" }}>
-            Para profissionais e donos de salão
-          </div>
-          <h1
-            className="font-display font-black text-slate-900 leading-tight mb-6 text-[clamp(2.6rem,6vw,3.8rem)] tracking-tight"
-            style={{ animation: "fadeUp .6s .1s ease-out both" }}
-          >
+          <div className="section-badge hero-fade-badge">Para profissionais e donos de salão</div>
+          <h1 className="font-display font-black text-slate-900 leading-tight mb-6 text-[clamp(2.6rem,6vw,3.8rem)] tracking-tight hero-fade-title">
             Sua agenda no
             <br />
             <span className="gradient-text">piloto automático</span>
           </h1>
-          <p
-            className="text-lg text-slate-500 max-w-xl mx-auto mb-8 leading-relaxed"
-            style={{ animation: "fadeUp .6s .2s ease-out both" }}
-          >
+          <p className="text-lg text-slate-500 max-w-xl mx-auto mb-8 leading-relaxed hero-fade-body">
             Configure sua loja em minutos. Seus clientes agendam online, 24h por dia —
             <br className="hidden md:block" />
             você foca no que realmente importa: o atendimento.
           </p>
-          <div
-            className="flex flex-col sm:flex-row gap-3 justify-center"
-            style={{ animation: "fadeUp .6s .3s ease-out both" }}
-          >
+          <div className="flex flex-col sm:flex-row gap-3 justify-center hero-fade-actions">
             <Link
               to="/cadastro"
               className="btn-salmon px-6 py-3 text-sm text-white font-bold rounded-[10px]"
@@ -78,18 +67,12 @@ export function HeroSection() {
               Ver como funciona
             </a>
           </div>
-          <p
-            className="text-xs text-slate-400 mt-4"
-            style={{ animation: "fadeUp .6s .4s ease-out both" }}
-          >
+          <p className="text-xs text-slate-400 mt-4 hero-fade-hint">
             Sem cartão de crédito. Configuração em 5 minutos.
           </p>
         </div>
 
-        <div
-          className="relative max-w-4xl mx-auto"
-          style={{ animation: "fadeUp .8s .35s ease-out both" }}
-        >
+        <div className="relative max-w-4xl mx-auto hero-fade-mockup">
           <div className="absolute inset-0 rounded-3xl scale-95 blur-3xl hero-glow" />
 
           <div className="relative bg-white rounded-2xl border border-border shadow-2xl overflow-hidden hero-window">
