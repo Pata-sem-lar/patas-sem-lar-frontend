@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { Check } from "lucide-react";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 function Benefit({ text }: { text: string }) {
   return (
@@ -164,19 +164,7 @@ function AdminMockup() {
 }
 
 export function ForWhom() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        }),
-      { threshold: 0.12 },
-    );
-    ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useRevealAnimation();
 
   return (
     <section id="para-quem" className="py-24 px-6 bg-background">

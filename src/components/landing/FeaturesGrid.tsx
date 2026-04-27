@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { Calendar, Clock, Mail, Users, ShieldCheck, FileText } from "lucide-react";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 const FEATURES = [
   {
@@ -53,19 +53,7 @@ const FEATURES = [
 ];
 
 export function FeaturesGrid() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        }),
-      { threshold: 0.12 },
-    );
-    ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useRevealAnimation();
 
   return (
     <section id="funcionalidades" className="py-24 px-6">

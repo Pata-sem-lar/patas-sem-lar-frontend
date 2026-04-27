@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 const STATS = [
   { value: "0", label: "Conflitos de horário" },
@@ -8,20 +8,7 @@ const STATS = [
 ];
 
 export function StatsBar() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.12 },
-    );
-    ref.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useRevealAnimation();
 
   return (
     <section ref={ref} className="py-10 px-6 border-y border-border bg-background">
