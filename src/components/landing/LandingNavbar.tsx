@@ -6,7 +6,7 @@ export function LandingNavbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="navbar-landing">
+    <header className="fixed top-0 inset-x-0 z-50 bg-[rgba(255,251,250,0.88)] backdrop-blur-lg border-b border-primary/12">
       <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="bg-linear-to-br from-chart-3 to-chart-2 size-8 rounded-xl flex items-center justify-center shadow-sm">

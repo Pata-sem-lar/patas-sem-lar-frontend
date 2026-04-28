@@ -63,7 +63,7 @@ export function HeroSection() {
             >
               Cadastrar minha loja →
             </Link>
-            <a href="#como-funciona" className="btn-secondary-landing px-6 py-3 text-sm">
+            <a href="#como-funciona" className="border-[1.5px] border-input text-secondary-foreground rounded-[10px] font-semibold transition-colors hover:bg-muted px-6 py-3 text-sm">
               Ver como funciona
             </a>
           </div>
@@ -75,7 +75,7 @@ export function HeroSection() {
         <div className="relative max-w-4xl mx-auto hero-fade-mockup">
           <div className="absolute inset-0 rounded-3xl scale-95 blur-3xl bg-primary/14" />
 
-          <div className="relative bg-white rounded-2xl border border-border shadow-2xl overflow-hidden hero-window">
+          <div className="relative bg-white rounded-2xl border border-border overflow-hidden shadow-[0_32px_80px_rgba(192,56,48,0.12),0_4px_16px_rgba(0,0,0,0.06)]">
             {/* Barra da janela */}
             <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-background">
               <div className="size-3 rounded-full bg-red-400" />

@@ -72,10 +72,11 @@ export function FeaturesGrid() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {FEATURES.map(({ icon: Icon, iconBg, iconColor, title, desc, delay }) => (
-            <div key={title} className={`feature-card card-hover-landing reveal ${delay}`}>
-              <div
-                className={`size-11 rounded-xl flex items-center justify-center mb-4 ${iconBg}`}
-              >
+            <div
+              key={title}
+              className={`bg-white border-[1.5px] border-border rounded-2xl p-6 card-hover-landing reveal ${delay}`}
+            >
+              <div className={`size-11 rounded-xl flex items-center justify-center mb-4 ${iconBg}`}>
                 <Icon className={`size-5 ${iconColor}`} />
               </div>
               <h3 className="font-heading font-bold text-slate-900 mb-2 text-lg tracking-tight">

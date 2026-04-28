@@ -5,7 +5,7 @@ import { Check, Copy } from "lucide-react";
 function PreviewServico() {
   return (
     <div className="step-preview-card">
-      <div className="step-service-selected mb-2">
+      <div className="border-2 border-primary bg-muted rounded-lg p-2 mb-2">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs font-semibold text-slate-900">Corte feminino</p>
@@ -17,7 +17,7 @@ function PreviewServico() {
           </div>
         </div>
       </div>
-      <div className="step-service-unselected">
+      <div className="border border-[#f1f5f9] rounded-lg p-2 opacity-60">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs text-slate-600">Coloração</p>
@@ -41,9 +41,9 @@ function PreviewHorario() {
   ];
 
   const slotClass: Record<string, string> = {
-    selected: "step-slot-selected",
-    available: "step-slot-available",
-    disabled: "step-slot-disabled",
+    selected: "border-2 border-primary bg-muted text-chart-4 font-bold",
+    available: "border border-[#e2e8f0] text-[#475569]",
+    disabled: "bg-[#f8fafc] text-[#cbd5e1] border border-[#f1f5f9]",
   };
 
   return (
@@ -258,7 +258,7 @@ export function HowItWorks() {
           <div className="absolute top-8 left-1/3 right-1/3 h-px bg-gradient-to-r from-input to-muted hidden md:block" />
           {steps.map(({ num, title, desc: stepDesc, preview }, i) => (
             <div key={num} className={`text-center reveal reveal-d${i + 1}`}>
-              <div className="size-16 rounded-2xl flex items-center justify-center mx-auto mb-6 step-number">
+              <div className="size-16 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-linear-to-br from-chart-3 to-primary shadow-[0_8px_24px_rgba(224,80,64,0.3)]">
                 <span className="font-heading font-black text-xl text-white">{num}</span>
               </div>
               <h3 className="font-heading font-bold text-slate-900 mb-3 text-lg tracking-tight">

@@ -128,24 +128,6 @@
     opacity: 0;
   }
 }
-/* Cor de label decorativa não disponível no Tailwind */
-.text-label-muted {
-  color: #c0a09a;
-}
-
-/* Avatar padrão da marca */
-.avatar-letter-primary {
-  background: var(--muted);
-  color: var(--chart-4);
-}
-
-/* Animações dos cards flutuantes do hero */
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-.animate-float-delayed {
-  animation: float 4s ease-in-out 1.8s infinite;
-}
 
 /* Gradiente de fundo do hero */
 .hero-bg {
@@ -163,6 +145,13 @@
   background-clip: text;
 }
 
+/* Animações dos cards flutuantes do hero */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float 4s ease-in-out 1.8s infinite;
+}
 
 /* Animação de entrada ao fazer scroll */
 .reveal {
@@ -202,42 +191,6 @@
     animation-delay: 0.6s;
   }
 
-  /* ── Botões ───────────────────────────────────────────────── */
-  .btn-salmon {
-    background: linear-gradient(135deg, var(--chart-3), var(--primary));
-    box-shadow: 0 3px 14px rgba(224, 80, 64, 0.28);
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease;
-  }
-  .btn-salmon:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(224, 80, 64, 0.38);
-  }
-
-  .btn-secondary-landing {
-    border: 1.5px solid var(--input);
-    color: var(--secondary-foreground);
-    border-radius: 10px;
-    font-weight: 600;
-    transition: background 0.2s;
-  }
-  .btn-secondary-landing:hover {
-    background: var(--muted);
-  }
-
-  /* ── Navbar ───────────────────────────────────────────────── */
-  .navbar-landing {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background: rgba(255, 251, 250, 0.88);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(240, 106, 88, 0.12);
-  }
-
   /* ── Hero mockup ──────────────────────────────────────────── */
   .hero-fade-badge {
     animation: fadeUp 0.5s ease-out both;
@@ -258,38 +211,7 @@
     animation: fadeUp 0.8s 0.35s ease-out both;
   }
 
-  .hero-window {
-    box-shadow:
-      0 32px 80px rgba(192, 56, 48, 0.12),
-      0 4px 16px rgba(0, 0, 0, 0.06);
-  }
-
-  .hero-float-card {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  }
-
-  /* ── Navegação landing ────────────────────────────────────── */
-  .nav-link-landing {
-    position: relative;
-    transition: color 0.2s;
-    text-decoration: none;
-  }
-  .nav-link-landing::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1.5px;
-    background: var(--primary);
-    border-radius: 2px;
-    transition: width 0.22s ease;
-  }
-  .nav-link-landing:hover::after {
-    width: 100%;
-  }
-
-  /* ── Cards e badges ───────────────────────────────────────── */
+  /* ── Badges de seção ─────────────────────────────────────────── */
   .section-badge {
     display: inline-flex;
     align-items: center;
@@ -314,6 +236,7 @@
     border-radius: 9999px;
   }
 
+  /* ── Hover de cards ──────────────────────────────────────────── */
   .card-hover-landing {
     transition:
       transform 0.25s ease,
@@ -324,7 +247,21 @@
     box-shadow: 0 14px 44px rgba(224, 80, 64, 0.1);
   }
 
-  /* ── Abas "Como funciona" ─────────────────────────────────── */
+  /* ── Cards flutuantes do hero ─────────────────────────────────── */
+  .hero-float-card {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ── Janela mockup ────────────────────────────────────────────── */
+  .mockup-window {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ── Abas "Como funciona" ─────────────────────────────────────── */
   .como-tab {
     padding: 0.5rem 1.25rem;
     font-size: 0.875rem;
@@ -349,12 +286,7 @@
     border-color: var(--primary);
   }
 
-  /* ── Previews dos passos (HowItWorks) ─────────────────────── */
-  .step-number {
-    background: linear-gradient(135deg, var(--chart-3), var(--primary));
-    box-shadow: 0 8px 24px rgba(224, 80, 64, 0.3);
-  }
-
+  /* ── Previews dos passos (HowItWorks) ─────────────────────────── */
   .step-preview-card {
     background: white;
     border: 1px solid var(--border);
@@ -362,35 +294,6 @@
     padding: 12px;
     text-align: left;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-  }
-
-  .step-slot-selected {
-    border: 2px solid var(--primary);
-    background: var(--muted);
-    color: var(--chart-4);
-    font-weight: 700;
-  }
-  .step-slot-disabled {
-    background: #f8fafc;
-    color: #cbd5e1;
-    border: 1px solid #f1f5f9;
-  }
-  .step-slot-available {
-    border: 1px solid #e2e8f0;
-    color: #475569;
-  }
-
-  .step-service-selected {
-    border: 2px solid var(--primary);
-    background: var(--muted);
-    border-radius: 8px;
-    padding: 8px;
-  }
-  .step-service-unselected {
-    border: 1px solid #f1f5f9;
-    border-radius: 8px;
-    padding: 8px;
-    opacity: 0.6;
   }
 
   .step-success-banner {
@@ -402,69 +305,47 @@
     padding: 6px 8px;
   }
 
-  /* ── Features ─────────────────────────────────────────────── */
-  .feature-card {
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-  }
-
-  /* ── Mockups (ForWhom) ────────────────────────────────────── */
-  .mockup-window {
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  }
-
-  /* ── Testimonials ─────────────────────────────────────────── */
-  .testimonial-card {
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-  }
-
-  /* ── CTA final ────────────────────────────────────────────── */
+  /* ── CTA final ────────────────────────────────────────────────── */
   .cta-box {
     background: linear-gradient(135deg, var(--chart-4) 0%, var(--chart-3) 40%, var(--primary) 100%);
     border-radius: 24px;
-    padding: 48px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 32px 80px rgba(192, 56, 48, 0.28);
   }
 
-  .cta-btn-white {
-    background: white;
-    color: var(--chart-4);
-    font-weight: 700;
-    border-radius: 12px;
-    padding: 14px 32px;
-    font-size: 0.875rem;
-    transition: background 0.2s;
-    text-decoration: none;
-    display: inline-block;
+  /* ── Botão primário da marca ──────────────────────────────────── */
+  .btn-salmon {
+    background: linear-gradient(135deg, var(--chart-3), var(--primary));
+    box-shadow: 0 3px 14px rgba(224, 80, 64, 0.28);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
   }
-  .cta-btn-white:hover {
-    background: #fff7f5;
+  .btn-salmon:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(224, 80, 64, 0.38);
   }
 
-  .cta-btn-outline {
-    border: 1.5px solid rgba(255, 255, 255, 0.35);
-    color: white;
-    font-weight: 600;
-    border-radius: 12px;
-    padding: 14px 32px;
-    font-size: 0.875rem;
-    transition: background 0.2s;
+  /* ── Navegação landing (::after não tem equivalente em Tailwind) ── */
+  .nav-link-landing {
+    position: relative;
+    transition: color 0.2s;
     text-decoration: none;
-    display: inline-block;
   }
-  .cta-btn-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
+  .nav-link-landing::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: width 0.22s ease;
+  }
+  .nav-link-landing:hover::after {
+    width: 100%;
   }
 }
 

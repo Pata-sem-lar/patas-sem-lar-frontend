@@ -122,42 +122,42 @@ function AdminMockup() {
         </div>
         <div className="rounded-xl overflow-hidden border border-border">
           <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead className="bg-background border-b border-border">
-              <tr>
-                {["Nome", "Hoje", "Status", ""].map((h) => (
-                  <th key={h} className="text-left px-3 py-2 font-semibold text-slate-500">
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {profs.map((p) => (
-                <tr key={p.name}>
-                  <td className="px-3 py-2.5">
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`size-5 rounded-full flex items-center justify-center text-xs font-bold ${p.cls}`}
-                      >
-                        {p.letter}
-                      </div>
-                      {p.name}
-                    </div>
-                  </td>
-                  <td className="px-3 py-2.5 text-slate-500">{p.today}</td>
-                  <td className="px-3 py-2.5">
-                    <span className="chip bg-emerald-100 text-emerald-700">✓ Ativo</span>
-                  </td>
-                  <td className="px-3 py-2.5 text-right">
-                    <button className="text-slate-300 hover:text-red-500 text-xs transition-colors">
-                      Remover
-                    </button>
-                  </td>
+            <table className="w-full text-xs">
+              <thead className="bg-background border-b border-border">
+                <tr>
+                  {["Nome", "Hoje", "Status", ""].map((h) => (
+                    <th key={h} className="text-left px-3 py-2 font-semibold text-slate-500">
+                      {h}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {profs.map((p) => (
+                  <tr key={p.name}>
+                    <td className="px-3 py-2.5">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className={`size-5 rounded-full flex items-center justify-center text-xs font-bold ${p.cls}`}
+                        >
+                          {p.letter}
+                        </div>
+                        {p.name}
+                      </div>
+                    </td>
+                    <td className="px-3 py-2.5 text-slate-500">{p.today}</td>
+                    <td className="px-3 py-2.5">
+                      <span className="chip bg-emerald-100 text-emerald-700">✓ Ativo</span>
+                    </td>
+                    <td className="px-3 py-2.5 text-right">
+                      <button className="text-slate-300 hover:text-red-500 text-xs transition-colors">
+                        Remover
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -169,7 +169,7 @@ export function ForWhom() {
   const ref = useRevealAnimation();
 
   return (
-    <section id="para-quem" className="py-24 px-6 bg-background">
+    <section id="para-quem" className="py-24 px-4 md:px-6 bg-background">
       <div className="max-w-6xl mx-auto" ref={ref}>
         <div className="text-center mb-16 reveal">
           <div className="section-badge">Para quem</div>

@@ -4,9 +4,9 @@ import { Zap, Calendar } from "lucide-react";
 export function CtaSection() {
   return (
     <>
-      <section className="py-24 px-6 bg-background">
+      <section className="py-16 md:py-24 px-2 md:px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="cta-box">
+          <div className="cta-box p-4 md:p-10">
             <div className="absolute top-0 right-0 size-72 rounded-full bg-white/6 translate-x-1/2 -translate-y-1/2" />
             <div className="absolute bottom-0 left-0 size-44 rounded-full bg-white/5 -translate-x-1/2 translate-y-1/2" />
 
@@ -27,10 +27,16 @@ export function CtaSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link to="/cadastro" className="cta-btn-white">
+                <Link
+                  to="/cadastro"
+                  className="bg-white text-chart-4 font-bold rounded-xl py-3.5 px-8 text-sm transition-colors hover:bg-[#fff7f5] no-underline inline-block"
+                >
                   Cadastrar minha loja →
                 </Link>
-                <a href="#como-funciona" className="cta-btn-outline">
+                <a
+                  href="#como-funciona"
+                  className="border-[1.5px] border-white/35 text-white font-semibold rounded-xl py-3.5 px-8 text-sm transition-colors hover:bg-white/10 no-underline inline-block"
+                >
                   Ver demonstração
                 </a>
               </div>
