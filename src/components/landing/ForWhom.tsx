@@ -121,6 +121,7 @@ function AdminMockup() {
           </button>
         </div>
         <div className="rounded-xl overflow-hidden border border-border">
+          <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead className="bg-background border-b border-border">
               <tr>
@@ -157,6 +158,7 @@ function AdminMockup() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>

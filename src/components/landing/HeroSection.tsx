@@ -42,7 +42,7 @@ const APPOINTMENTS = [
 
 export function HeroSection() {
   return (
-    <section className="hero-bg pt-32 pb-20 px-6">
+    <section className="hero-bg pt-32 pb-20 px-2 md:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <div className="section-badge hero-fade-badge">Para profissionais e donos de salão</div>
@@ -88,9 +88,9 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="flex h-[360px]">
+            <div className="flex md:h-90">
               {/* Sidebar */}
-              <div className="w-48 border-r border-border p-4 flex flex-col gap-1 shrink-0 bg-[#fdf9f8]">
+              <div className="hidden md:flex w-48 border-r border-border p-4 flex-col gap-1 shrink-0 bg-[#fdf9f8]">
                 <div className="mb-4 flex items-center gap-2">
                   <div className="size-8 rounded-full flex items-center justify-center shrink-0 bg-muted">
                     <Calendar className="size-4 text-chart-3" />
@@ -118,7 +118,7 @@ export function HeroSection() {
               </div>
 
               {/* Painel principal */}
-              <div className="flex-1 p-5 overflow-hidden">
+              <div className="flex-1 p-3 sm:p-5 overflow-hidden">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h4 className="text-sm font-bold text-slate-900">Painel · 24 abr 2026</h4>
@@ -127,18 +127,18 @@ export function HeroSection() {
                   <span className="chip bg-muted text-chart-4">3 profissionais ativos</span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 mb-4">
-                  <div className="rounded-xl p-3 bg-muted border border-input">
-                    <p className="text-xl font-black text-chart-4">8</p>
-                    <p className="text-xs text-slate-500 mt-0.5">agendamentos hoje</p>
+                <div className="grid grid-cols-3 gap-2 mb-4">
+                  <div className="rounded-xl p-2 bg-muted border border-input">
+                    <p className="text-lg font-black text-chart-4">8</p>
+                    <p className="text-[0.65rem] leading-tight text-slate-500 mt-0.5">agendamentos hoje</p>
                   </div>
-                  <div className="rounded-xl p-3 bg-emerald-50 border border-emerald-100">
-                    <p className="text-xl font-black text-emerald-700">6</p>
-                    <p className="text-xs text-slate-500 mt-0.5">confirmados</p>
+                  <div className="rounded-xl p-2 bg-emerald-50 border border-emerald-100">
+                    <p className="text-lg font-black text-emerald-700">6</p>
+                    <p className="text-[0.65rem] leading-tight text-slate-500 mt-0.5">confirmados</p>
                   </div>
-                  <div className="rounded-xl p-3 bg-amber-50 border border-amber-100">
-                    <p className="text-xl font-black text-amber-600">2</p>
-                    <p className="text-xs text-slate-500 mt-0.5">pendentes</p>
+                  <div className="rounded-xl p-2 bg-amber-50 border border-amber-100">
+                    <p className="text-lg font-black text-amber-600">2</p>
+                    <p className="text-[0.65rem] leading-tight text-slate-500 mt-0.5">pendentes</p>
                   </div>
                 </div>
 

@@ -7,11 +7,11 @@ export function CtaSection() {
       <section className="py-24 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
           <div className="cta-box">
-            <div className="absolute top-0 right-0 size-72 rounded-full bg-white/[0.06] translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 left-0 size-44 rounded-full bg-white/[0.05] -translate-x-1/2 translate-y-1/2" />
+            <div className="absolute top-0 right-0 size-72 rounded-full bg-white/6 translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-0 left-0 size-44 rounded-full bg-white/5 -translate-x-1/2 translate-y-1/2" />
 
             <div className="relative">
-              <div className="inline-flex items-center gap-2 bg-white/[0.18] text-white text-xs font-bold px-3 py-1.5 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 bg-white/18 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-6">
                 <Zap className="size-3.5" />
                 Configure em 5 minutos
               </div>
@@ -45,7 +45,7 @@ export function CtaSection() {
 
       <footer className="border-t border-border py-12 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-start justify-between mb-8 flex-wrap gap-8">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-8 gap-8">
             <div>
               <div className="flex items-center gap-2.5 mb-3">
                 <div className="bg-linear-to-br from-chart-3 to-chart-2 size-7 rounded-lg flex items-center justify-center">
@@ -60,7 +60,7 @@ export function CtaSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-12 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 text-sm">
               <div>
                 <p className="font-semibold text-slate-900 mb-3">Produto</p>
                 <div className="space-y-2 text-slate-500">
