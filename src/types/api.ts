@@ -1,4 +1,4 @@
-import type { RoleEnum, StatusAgendamento } from "./enums";
+import type { RoleEnum, AppointmentStatus } from "./enums";
 
 // ---------------------------------------------------------------------------
 // Primitivos reutilizáveis
@@ -37,7 +37,7 @@ export interface ApiError {
 export interface TokenResponse {
   access_token: string;
   token_type: "bearer";
-  user: UsuarioDTO;
+  user: UserDTO;
 }
 
 export interface RefreshResponse {
@@ -49,11 +49,11 @@ export interface RefreshResponse {
 // Usuário
 // ---------------------------------------------------------------------------
 
-export interface UsuarioDTO {
+export interface UserDTO {
   id: string;
-  nome: string;
+  name: string;
   email: string;
-  telefone: string | null;
+  phone: string | null;
   role: RoleEnum;
   created_at: ISOTimestamp;
 }
@@ -62,14 +62,14 @@ export interface UsuarioDTO {
 // Loja
 // ---------------------------------------------------------------------------
 
-export interface LojaDTO {
+export interface StoreDTO {
   id: string;
   owner_id: string;
-  nome: string;
-  descricao: string | null;
-  telefone: string | null;
+  name: string;
+  description: string | null;
+  phone: string | null;
   email: string | null;
-  endereco: string | null;
+  address: string | null;
   logo_url: string | null;
   is_active: boolean;
   created_at: ISOTimestamp;
@@ -80,29 +80,37 @@ export interface LojaDTO {
 // Profissional
 // ---------------------------------------------------------------------------
 
-export interface ProfissionalDTO {
+export interface ProfessionalDTO {
   id: string;
-  usuario_id: string;
-  loja_id: string;
+  user_id: string;
   /** Nome vem do Usuario relacionado — o backend desnormaliza para evitar joins no frontend */
-  nome: string;
+  name: string;
   bio: string | null;
-  foto_url: string | null;
+  photo_url: string | null;
   is_active: boolean;
+}
+
+export interface ProfessionalStoreDTO {
+  id: string;
+  professional_id: string;
+  store_id: string;
+  is_active: boolean;
+  created_at: ISOTimestamp;
+  updated_at: ISOTimestamp;
 }
 
 // ---------------------------------------------------------------------------
 // Serviço
 // ---------------------------------------------------------------------------
 
-export interface ServicoDTO {
+export interface ServiceDTO {
   id: string;
-  profissional_id: string;
-  nome: string;
-  descricao: string | null;
+  professional_store_id: string;
+  name: string;
+  description: string | null;
   /** Decimal(10,2) serializado como string pelo backend */
-  preco: DecimalString;
-  duracao_minutos: number;
+  price: DecimalString;
+  duration_minutes: number;
   is_active: boolean;
 }
 
@@ -110,14 +118,14 @@ export interface ServicoDTO {
 // Horário de trabalho
 // ---------------------------------------------------------------------------
 
-export interface HorarioTrabalhoDTO {
+export interface WorkScheduleDTO {
   id: string;
-  profissional_id: string;
+  professional_store_id: string;
   /** 0 = segunda ... 6 = domingo */
-  dia_semana: number;
+  weekday: number;
   /** Formato "HH:MM:SS" */
-  hora_inicio: string;
-  hora_fim: string;
+  start_time: string;
+  end_time: string;
   is_active: boolean;
 }
 
@@ -125,40 +133,58 @@ export interface HorarioTrabalhoDTO {
 // Agendamento
 // ---------------------------------------------------------------------------
 
-export interface AgendamentoDTO {
+export interface AppointmentDTO {
   id: string;
-  cliente_id: string;
-  profissional_id: string;
-  servico_id: string;
-  data_hora_inicio: ISOTimestamp;
-  data_hora_fim: ISOTimestamp;
-  status: StatusAgendamento;
-  notas: string | null;
-  cancelado_por: string | null;
-  cancelado_motivo: string | null;
+  client_id: string;
+  professional_id: string;
+  offering_id: string;
+  starts_at: ISOTimestamp;
+  ends_at: ISOTimestamp;
+  status: AppointmentStatus;
+  notes: string | null;
+  cancelled_by: string | null;
+  cancellation_reason: string | null;
+  reminder_sent: boolean;
   created_at: ISOTimestamp;
   // Relações opcionais — incluídas quando o endpoint expande os dados
-  cliente?: UsuarioDTO;
-  profissional?: ProfissionalDTO;
-  servico?: ServicoDTO;
+  client?: UserDTO;
+  professional?: ProfessionalDTO;
+  offering?: ServiceDTO;
 }
 
 // ---------------------------------------------------------------------------
 // Disponibilidade
 // ---------------------------------------------------------------------------
 
-/** Retornado por GET /profissionais/{id}/slots-disponiveis */
+/** Retornado por GET /professionals/{id}/available-slots */
 export interface SlotsResponse {
-  data: string; // "YYYY-MM-DD"
-  profissional_id: string;
-  servico_id: string;
-  duracao_minutos: number;
-  /**
-   * Slots disponíveis como ISO 8601 UTC.
-   * O valor selecionado vai direto como `data_hora_inicio` na criação do agendamento.
-   * Array vazio = sem disponibilidade (não é 404).
-   */
-  slots: ISOTimestamp[];
+  date: string; // "YYYY-MM-DD"
+  professional_store_id: string;
+  offering_id: string;
+  duration_minutes: number;
+  slots: { start: ISOTimestamp; end: ISOTimestamp }[];
+}
+
+// ---------------------------------------------------------------------------
+// Convites
+// ---------------------------------------------------------------------------
+
+export interface InviteCreatedDTO {
+  token: string;
+  url: string;
+  expires_at: ISOTimestamp;
+}
+
+export interface InvitePublicDTO {
+  store_id: string;
+  store_name: string;
+  expires_at: ISOTimestamp;
+}
+
+export interface InviteAcceptResponseDTO {
+  professional_store: ProfessionalStoreDTO;
+  access_token?: string;
+  refresh_token?: string;
 }
 
 // ---------------------------------------------------------------------------

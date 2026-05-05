@@ -31,7 +31,7 @@ export function LandingNavbar() {
             Entrar
           </Link>
           <Link
-            to="/cadastro"
+            to="/register"
             className="btn-salmon px-4 py-2 text-sm text-white font-bold rounded-[10px]"
           >
             Cadastrar minha loja →
@@ -67,7 +67,7 @@ export function LandingNavbar() {
               Entrar
             </Link>
             <Link
-              to="/cadastro"
+              to="/register"
               className="btn-salmon px-4 py-3 text-sm text-white font-bold rounded-[10px] text-center"
               onClick={() => setOpen(false)}
             >

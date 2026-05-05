@@ -34,7 +34,7 @@ export function RegisterForm() {
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { role: "cliente" },
+    defaultValues: { role: "client" },
   });
   const { mutate: registerUser, isPending, error } = useRegister();
 
@@ -92,7 +92,7 @@ export function RegisterForm() {
                   />
                 ))}
               </div>
-              {selectedRole === "admin_loja" ? (
+              {selectedRole === "store_admin" ? (
                 <>
                   <p className="text-xs text-white mb-3 leading-relaxed">
                     "Antes ficava o dia todo no WhatsApp. Agora os clientes
@@ -163,9 +163,9 @@ export function RegisterForm() {
             <div className="flex rounded-lg border border-input p-1 gap-1">
               <button
                 type="button"
-                onClick={() => setValue("role", "cliente")}
+                onClick={() => setValue("role", "client")}
                 className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                  selectedRole === "cliente"
+                  selectedRole === "client"
                     ? "bg-primary text-white"
                     : "text-slate-600 hover:bg-muted"
                 }`}
@@ -174,9 +174,9 @@ export function RegisterForm() {
               </button>
               <button
                 type="button"
-                onClick={() => setValue("role", "admin_loja")}
+                onClick={() => setValue("role", "store_admin")}
                 className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                  selectedRole === "admin_loja"
+                  selectedRole === "store_admin"
                     ? "bg-primary text-white"
                     : "text-slate-600 hover:bg-muted"
                 }`}
@@ -187,23 +187,23 @@ export function RegisterForm() {
 
             {/* Full name field */}
             <div className="flex flex-col gap-1">
-              <Label className="font-semibold text-slate-700" htmlFor="nome">
+              <Label className="font-semibold text-slate-700" htmlFor="name">
                 Nome completo
               </Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
                 <Input
-                  id="nome"
+                  id="name"
                   className="pl-10"
-                  {...registerField("nome")}
+                  {...registerField("name")}
                   type="text"
                   placeholder="Jessé Jacinto José"
-                  aria-invalid={!!errors.nome}
+                  aria-invalid={!!errors.name}
                 />
               </div>
-              {errors.nome && (
+              {errors.name && (
                 <p className="text-destructive text-xs mt-1">
-                  {errors.nome.message}
+                  {errors.name.message}
                 </p>
               )}
             </div>

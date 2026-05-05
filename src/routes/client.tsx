@@ -1,16 +1,13 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { useAuthStore } from "@/store/authStore";
 import { refresh } from "@/lib/api/auth";
-import { AdminSidebar } from "@/components/layout/AdminSidebar";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/client")({
   beforeLoad: async () => {
     const { user, accessToken, setAccessToken, logout } = useAuthStore.getState();
 
     if (!user) throw redirect({ to: "/login" });
 
-    // Token missing = página recarregada, refresh token ainda pode estar no cookie
     if (!accessToken) {
       try {
         const data = await refresh();
@@ -21,18 +18,11 @@ export const Route = createFileRoute("/admin")({
       }
     }
 
-    if (user.role !== "store_admin") throw redirect({ to: "/" });
+    if (user.role !== "client") throw redirect({ to: "/" });
   },
-  component: AdminLayout,
+  component: ClienteLayout,
 });
 
-function AdminLayout() {
-  return (
-    <SidebarProvider>
-      <AdminSidebar />
-      <SidebarInset>
-        <Outlet />
-      </SidebarInset>
-    </SidebarProvider>
-  );
+function ClienteLayout() {
+  return <Outlet />;
 }

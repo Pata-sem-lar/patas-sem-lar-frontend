@@ -88,7 +88,7 @@ export function LoginForm() {
             </h3>
             <p className="text-sm text-slate-500">
               Não tem conta?{" "}
-              <Link to="/cadastro" className="font-semibold text-chart-3">
+              <Link to="/register" className="font-semibold text-chart-3">
                 Cadastrar-se
               </Link>
             </p>

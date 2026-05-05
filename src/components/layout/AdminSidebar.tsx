@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Store, Users, ClipboardList, Calendar, Settings, LogOut } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
-import { useMinhasLojas } from "@/hooks/useLojas";
+import { useMyStores } from "@/hooks/useStores";
 import { useLogout } from "@/hooks/useAuth";
 import { Logo } from "@/components/shared/Logo";
 import {
@@ -30,7 +30,7 @@ function getInitials(nome: string): string {
 export function AdminSidebar() {
   const user = useAuthStore((s) => s.user);
   const { mutate: logoutUser } = useLogout();
-  const { data: lojas } = useMinhasLojas();
+  const { data: lojas } = useMyStores();
   const lojaCount = lojas?.length ?? 0;
 
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -123,10 +123,10 @@ export function AdminSidebar() {
           className="w-full flex items-center gap-2.5 px-1.5 py-1 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors text-left"
         >
           <div className="size-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 bg-muted text-chart-4">
-            {user ? getInitials(user.nome) : "—"}
+            {user ? getInitials(user.name) : "—"}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-slate-900 truncate">{user?.nome ?? ""}</p>
+            <p className="text-xs font-semibold text-slate-900 truncate">{user?.name ?? ""}</p>
             <p className="text-xs text-muted-foreground truncate">{user?.role ?? ""}</p>
           </div>
           <LogOut className="size-3.5 shrink-0 text-slate-400" />

@@ -1,19 +1,19 @@
 export const RoleEnum = {
-  cliente: "cliente",
-  profissional: "profissional",
-  admin_loja: "admin_loja",
+  client: "client",
+  professional: "professional",
+  store_admin: "store_admin",
 } as const;
 
 export type RoleEnum = (typeof RoleEnum)[keyof typeof RoleEnum];
 
-export const StatusAgendamento = {
-  pendente: "pendente",
-  confirmado: "confirmado",
-  cancelado: "cancelado",
-  concluido: "concluido",
+export const AppointmentStatus = {
+  pending: "pending",
+  confirmed: "confirmed",
+  cancelled: "cancelled",
+  completed: "completed",
 } as const;
 
-export type StatusAgendamento = (typeof StatusAgendamento)[keyof typeof StatusAgendamento];
+export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus];
 
 // Backend armazena como inteiro: 0 = segunda ... 6 = domingo
 export const DiaSemana = {

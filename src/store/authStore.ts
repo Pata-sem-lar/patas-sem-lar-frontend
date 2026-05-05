@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { UsuarioDTO } from "@/types/api";
+import type { UserDTO } from "@/types/api";
 
 interface AuthState {
   accessToken: string | null;
-  user: UsuarioDTO | null;
-  login: (token: string, user: UsuarioDTO) => void;
+  user: UserDTO | null;
+  login: (token: string, user: UserDTO) => void;
   logout: () => void;
   setAccessToken: (token: string) => void;
 }

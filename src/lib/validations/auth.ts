@@ -6,7 +6,7 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  nome: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
+  name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.email("Email inválido"),
   password: z
     .string()
@@ -14,7 +14,7 @@ export const registerSchema = z.object({
     .regex(/[A-Z]/, "Senha deve conter pelo menos uma letra maiúscula")
     .regex(/[0-9]/, "Senha deve conter pelo menos um número")
     .regex(/[^A-Za-z0-9]/, "Senha deve conter pelo menos um caractere especial"),
-  role: z.enum(["cliente", "admin_loja"]),
+  role: z.enum(["client", "store_admin"]),
   // .refine() garante que só aceita checked — false ou undefined rejeitado
   accepted_terms: z.boolean().refine((val) => val === true, {
     message: "Você deve aceitar os Termos e Condições",

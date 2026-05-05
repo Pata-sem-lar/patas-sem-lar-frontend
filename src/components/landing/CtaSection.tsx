@@ -28,7 +28,7 @@ export function CtaSection() {
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
-                  to="/cadastro"
+                  to="/register"
                   className="bg-white text-chart-4 font-bold rounded-xl py-3.5 px-8 text-sm transition-colors hover:bg-[#fff7f5] no-underline inline-block"
                 >
                   Cadastrar minha loja →
@@ -96,7 +96,7 @@ export function CtaSection() {
                     </Link>
                   </p>
                   <p>
-                    <Link to="/cadastro" className="hover:text-slate-800 transition-colors">
+                    <Link to="/register" className="hover:text-slate-800 transition-colors">
                       Cadastrar loja
                     </Link>
                   </p>

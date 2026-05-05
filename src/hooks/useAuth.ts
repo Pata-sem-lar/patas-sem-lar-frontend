@@ -5,12 +5,12 @@ import { login, register, logout } from "@/lib/api/auth";
 import type { RoleEnum } from "@/types/enums";
 
 function redirectByRole(navigate: ReturnType<typeof useNavigate>, role: RoleEnum) {
-  if (role === "admin_loja") {
+  if (role === "store_admin") {
     navigate({ to: "/admin/dashboard" });
-  } else if (role === "profissional") {
-    navigate({ to: "/profissional/dashboard" });
+  } else if (role === "professional") {
+    navigate({ to: "/professional/dashboard" });
   } else {
-    navigate({ to: "/lojas" })
+    navigate({ to: "/stores" })
   }
 }
 
