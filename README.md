@@ -1,126 +1,92 @@
-# 🐾 Patas Sem Lar — Frontend MVP
+# Agendei — Frontend
 
-Frontend da plataforma **Patas Sem Lar**, uma aplicação web voltada para divulgação de animais disponíveis para adoção por associações e protetores independentes.
+Interface web da plataforma de agendamento para salões de beleza. Permite que donos de salão gerenciem lojas e profissionais, profissionais gerenciem sua agenda e serviços, e clientes façam agendamentos online.
 
-O objetivo do projeto é sensibilizar pessoas sobre a importância da adoção responsável e facilitar a conexão entre interessados e associações de animais.
+## Stack
 
----
+- **React 19** + **TypeScript**
+- **Vite 7** — bundler e dev server
+- **TanStack Router** — roteamento file-based com code splitting automático
+- **TanStack Query** — cache e sincronização de dados do servidor
+- **Zustand** — estado global do cliente (auth, booking flow, UI)
+- **Tailwind CSS v4** + **shadcn/ui** — design system
+- **React Hook Form** + **Zod** — formulários e validação
+- **Axios** — cliente HTTP com interceptors de auth
 
-## 🎯 Objetivo do MVP
+## Pré-requisitos
 
-O MVP (Minimum Viable Product) tem como foco principal:
+- Node.js 20+
+- Backend rodando em `http://localhost:8000` (ver `../backend/`)
 
-- Exibir animais disponíveis para adoção
-- Permitir visualização detalhada das informações dos animais
-- Permitir autenticação de usuários
-- Permitir que associações criem e gerenciem posts
+## Instalação
 
----
+```bash
+npm install
+```
 
-## 🧱 Stack Tecnológica
+## Execução
 
-- **React**
-- **Axios**
-- **TailwindCSS** (ou outra biblioteca de estilização)
-- Integração com API backend em **Java + Spring Boot**
+```bash
+npm run dev
+```
 
----
+O Vite sobe em `http://localhost:5173` e faz proxy de `/api/*` para `http://localhost:8000` automaticamente — não é necessário configurar variáveis de ambiente para desenvolvimento local.
 
-## 🌍 Estrutura de Rotas
+## Scripts
 
-### 🔓 Rotas Públicas
+| Comando           | O que faz                                 |
+| ----------------- | ----------------------------------------- |
+| `npm run dev`     | Inicia o dev server com HMR               |
+| `npm run build`   | Type-check + build de produção em `dist/` |
+| `npm run preview` | Serve o build de produção localmente      |
+| `npm run lint`    | Roda ESLint                               |
 
-| Rota | Descrição |
-|------|------------|
-| `/` | Landing page institucional |
-| `/explorar` | Mostruário de animais disponíveis |
-| `/explorar/:id` | Página de detalhe do animal |
-| `/login` | Login |
-| `/register` | Registro |
+## Estrutura
 
----
+```
+src/
+├── components/
+│   ├── ui/          # Primitivos shadcn — sem lógica de negócio
+│   ├── shared/      # Componentes reutilizáveis (LoadingSpinner, EmptyState…)
+│   ├── layout/      # Navbar, Sidebar, PageContainer
+│   └── {feature}/   # Componentes específicos por domínio
+├── hooks/           # Hooks TanStack Query, um arquivo por domínio
+├── lib/
+│   ├── api/         # Funções async puras por recurso
+│   └── validations/ # Schemas Zod por entidade
+├── routes/          # Rotas file-based do TanStack Router
+├── store/           # Stores Zustand
+└── types/           # DTOs e enums compartilhados
+```
 
-### 🔐 Rotas Protegidas
+## Rotas
 
-| Rota | Acesso | Descrição |
-|------|--------|------------|
-| `/profile` | Usuário autenticado | Perfil do usuário |
-| `/association/dashboard` | Associação | Gerenciar posts |
-| `/association/posts/new` | Associação | Criar novo post |
-| `/association/posts/:id/edit` | Associação | Editar post |
+| Caminho                   | Papel        | Descrição                                              |
+| ------------------------- | ------------ | ------------------------------------------------------ |
+| `/`                       | público      | Landing page                                           |
+| `/login`                  | público      | Login                                                  |
+| `/register`               | público      | Cadastro de cliente                                    |
+| `/stores`                 | público      | Lista de lojas                                         |
+| `/stores/:storeId`        | público      | Página da loja                                         |
+| `/stores/:storeId/book`   | cliente      | Fluxo de agendamento (serviço → horário → confirmação) |
+| `/admin/dashboard`        | admin        | Visão geral da loja                                    |
+| `/admin/store/edit`       | admin        | Editar dados da loja                                   |
+| `/admin/professionals`    | admin        | Gerenciar profissionais                                |
+| `/professional/dashboard` | profissional | Visão geral do profissional                            |
+| `/professional/services`  | profissional | Gerenciar serviços                                     |
+| `/professional/schedules` | profissional | Configurar horários de trabalho                        |
+| `/client/appointments`    | cliente      | Meus agendamentos                                      |
+| `/client/account`         | cliente      | Conta do cliente                                       |
 
----
+## Auth
 
-## 🧩 Componentes Principais
+A autenticação usa dois tokens:
 
-- `Header`
-- `HeroLanding`
-- `AnimalCard`
-- `AnimalGrid`
-- `FilterBar`
-- `AnimalDetail`
-- `LoginForm`
-- `RegisterForm`
-- `PostForm`
-- `PhotoUploader`
-- `AdoptionRequestModal`
-- `ProtectedRoute`
+- **Access token** — armazenado em memória (Zustand), enviado como `Bearer` header
+- **Refresh token** — cookie httpOnly, enviado automaticamente pelo browser
 
----
+O interceptor do Axios renova o access token silenciosamente ao receber um `401`, enfileirando as requisições paralelas para evitar múltiplas chamadas ao `/auth/refresh`.
 
-## 🔎 Funcionalidades do MVP
+## Convenções
 
-### 🏠 Landing Page
-- Texto institucional
-- Call-to-action para explorar animais
-- Seção explicando importância da adoção
-
-### 🐶 Mostruário de Animais
-- Grid de cards
-- Exibição de:
-  - Foto principal
-  - Nome do animal
-  - Cidade/Região
-  - Status (Disponível / Adotado)
-- Filtros básicos:
-  - Espécie
-  - Cidade
-  - Porte
-  - Idade
-
-### 📄 Página de Detalhe
-- Galeria de fotos
-- Descrição completa
-- Informações da associação
-- Botão “Manifestar Interesse”
-
-### 🔐 Autenticação
-- Registro
-- Login
-- Logout
-- Persistência de token
-- Rotas protegidas
-
-### 🏢 Área da Associação
-- Criar post
-- Editar post
-- Remover post
-- Upload de fotos
-
-### 💌 Manifestação de Interesse
-- Usuário autenticado pode enviar mensagem
-- Feedback visual após envio
-
----
-
-## 🔌 Integração com API
-
-Base URL:
-- POST /auth/login
-- POST /auth/register
-- GET /posts
-- GET /posts/{id}
-- POST /posts
-- PUT /posts/{id}
-- DELETE /posts/{id}
-- POST /posts/{id}/adoption-requests
+Ver [`CLAUDE.md`](./CLAUDE.md) para convenções de nomenclatura, estrutura de componentes, padrões de hooks, stores Zustand, formulários e design system (tokens de cor, tipografia, padrões de UI).
