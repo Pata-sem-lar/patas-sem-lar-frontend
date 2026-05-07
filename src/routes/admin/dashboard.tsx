@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bell, Plus, Store, Users, ClipboardList, Calendar } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
-import { useMinhasLojas } from "@/hooks/useLojas";
+import { useMyStores } from "@/hooks/useStores";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export const Route = createFileRoute("/admin/dashboard")({
@@ -28,7 +28,7 @@ function capitalize(s: string): string {
 
 function AdminDashboard() {
   const user = useAuthStore((s) => s.user);
-  const { data: lojas = [] } = useMinhasLojas();
+  const { data: lojas = [] } = useMyStores();
 
   const hasLojas = lojas.length > 0;
 
@@ -50,7 +50,7 @@ function AdminDashboard() {
             <Bell className="size-4.5" />
           </button>
           <Link
-            to="/admin/loja/editar"
+            to="/admin/store/edit"
             className="btn-salmon flex items-center gap-2 px-4 py-2 text-sm font-bold text-white rounded-[9px]"
           >
             <Plus className="size-4" />
@@ -69,7 +69,7 @@ function AdminDashboard() {
                 Bem-vindo ao Agendei
               </p>
               <h2 className="font-heading font-bold text-slate-900 text-xl tracking-[-0.025em] mb-1">
-                Olá, {user ? getGreetingName(user.nome) : ""}!
+                Olá, {user ? getGreetingName(user.name) : ""}!
               </h2>
               <p className="text-sm text-muted-foreground">
                 Sua conta está pronta. Crie sua primeira loja para começar a receber agendamentos.
@@ -77,7 +77,7 @@ function AdminDashboard() {
             </div>
 
             <Link
-              to="/admin/loja/editar"
+              to="/admin/store/edit"
               className="btn-salmon flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-bold text-white rounded-[9px] relative sm:shrink-0"
             >
               <Plus className="size-4" />
@@ -140,9 +140,9 @@ function AdminDashboard() {
                     <Store className="size-5 text-chart-3" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-slate-900 truncate">{loja.nome}</p>
-                    {loja.endereco && (
-                      <p className="text-xs text-muted-foreground truncate">{loja.endereco}</p>
+                    <p className="text-sm font-semibold text-slate-900 truncate">{loja.name}</p>
+                    {loja.address && (
+                      <p className="text-xs text-muted-foreground truncate">{loja.address}</p>
                     )}
                   </div>
                   <span
@@ -170,7 +170,7 @@ function AdminDashboard() {
                 agendamentos online em minutos.
               </p>
               <Link
-                to="/admin/loja/editar"
+                to="/admin/store/edit"
                 className="btn-salmon flex items-center gap-2 px-6 py-2.5 text-sm font-bold text-white rounded-[9px]"
               >
                 <Plus className="size-4" />

@@ -12,10 +12,10 @@ interface LoginInput {
 }
 
 interface RegisterInput {
-  nome: string;
+  name: string;
   email: string;
   password: string;
-  role: Exclude<RoleEnum, "profissional">;
+  role: Exclude<RoleEnum, "professional">;
   accepted_terms: boolean;
 }
 

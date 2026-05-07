@@ -58,7 +58,7 @@ export function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center hero-fade-actions">
             <Link
-              to="/cadastro"
+              to="/register"
               className="btn-salmon px-6 py-3 text-sm text-white font-bold rounded-[10px]"
             >
               Cadastrar minha loja →
