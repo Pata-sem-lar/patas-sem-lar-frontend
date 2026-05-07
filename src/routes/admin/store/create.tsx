@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { storeSchema, type StoreFormData } from "@/lib/validations/store";
 
-export const Route = createFileRoute("/admin/store/edit")({
+export const Route = createFileRoute("/admin/store/create")({
   component: CreateStore,
 });
 
