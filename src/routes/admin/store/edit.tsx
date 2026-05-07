@@ -2,28 +2,29 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Store, Phone, Mail, MapPin, Image, Loader2 } from "lucide-react";
-import { useMyStores } from "@/hooks/useStores";
+import { useCreateStore } from "@/hooks/useStores";
 import { getApiErrorMessage } from "@/lib/api/errorUtils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { storeSchema, type StoreFormData } from "@/lib/validations/store";
 
 export const Route = createFileRoute("/admin/store/edit")({
-  component: CriarLoja,
+  component: CreateStore,
 });
 
-function CriarLoja() {
+function CreateStore() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<StoreFormData>({
-    resolver: zodResolver(lojaSchema),
+    resolver: zodResolver(storeSchema),
   });
 
-  const { mutate: createLoja, isPending, error } = useMyStores();
+  const { mutate: createStore, isPending, error } = useCreateStore();
 
   return (
     <div className="flex flex-col flex-1">
@@ -48,7 +49,7 @@ function CriarLoja() {
       <main className="flex-1 p-4 md:p-8">
         <div className="max-w-2xl mx-auto">
           <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-            <form className="space-y-5" onSubmit={handleSubmit((data) => createLoja(data))}>
+            <form className="space-y-5" onSubmit={handleSubmit((data) => createStore(data))}>
               {/* Nome */}
               <div className="flex flex-col gap-1.5">
                 <Label className="font-semibold text-slate-700" htmlFor="nome">
@@ -57,14 +58,14 @@ function CriarLoja() {
                 <div className="relative">
                   <Store className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
                   <Input
-                    id="nome"
+                    id="name"
                     className="pl-10"
                     placeholder="Ex: Salão da Ana"
-                    aria-invalid={!!errors.nome}
-                    {...register("nome")}
+                    aria-invalid={!!errors.name}
+                    {...register("name")}
                   />
                 </div>
-                {errors.nome && <p className="text-destructive text-xs">{errors.nome.message}</p>}
+                {errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
               </div>
 
               {/* Descrição */}
@@ -73,14 +74,14 @@ function CriarLoja() {
                   Descrição <span className="text-muted-foreground font-normal">(opcional)</span>
                 </Label>
                 <Textarea
-                  id="descricao"
+                  id="description"
                   rows={3}
                   placeholder="Apresente seu espaço, especialidades, diferenciais..."
-                  aria-invalid={!!errors.descricao}
-                  {...register("descricao")}
+                  aria-invalid={!!errors.description}
+                  {...register("description")}
                 />
-                {errors.descricao && (
-                  <p className="text-destructive text-xs">{errors.descricao.message}</p>
+                {errors.description && (
+                  <p className="text-destructive text-xs">{errors.description.message}</p>
                 )}
               </div>
 
@@ -93,10 +94,10 @@ function CriarLoja() {
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
                     <Input
-                      id="telefone"
+                      id="phone"
                       className="pl-10"
                       placeholder="(+351) 999 999 999"
-                      {...register("telefone")}
+                      {...register("phone")}
                     />
                   </div>
                 </div>
@@ -129,10 +130,10 @@ function CriarLoja() {
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
                   <Input
-                    id="endereco"
+                    id="address"
                     className="pl-10"
                     placeholder="Rua das Flores, 123 — São Paulo, SP"
-                    {...register("endereco")}
+                    {...register("address")}
                   />
                 </div>
               </div>

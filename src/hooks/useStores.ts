@@ -10,7 +10,7 @@ export function useMyStores() {
   });
 }
 
-export function useCreateLoja() {
+export function useCreateStore() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
